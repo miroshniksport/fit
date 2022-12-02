@@ -1,0 +1,295 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: opacity 500ms, visibility 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.is-hidden {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.modal__button-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover,
+    &:focus {
+        fill: #2196f3;
+        cursor: pointer;
+    }
+}
+
+.modal {
+    position: relative;
+    width: 100%;
+
+    @media screen and (min-width: 450px) {
+        width: 450px;
+        height: 330px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 528px;
+        height: 400px;
+    }
+
+    padding: 40px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+    transition-property: background-color,
+    transform,
+    width,
+    height;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    .backdrop.is-hidden & {
+        transform: scale(1.25);
+        transition: transform 500ms;
+    }
+}
+
+.modal__title {
+    font-size: 20px;
+    line-height: 1.17;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 12px;
+    color: #212121;
+}
+
+.modal__form {
+    font-size: 12px;
+    line-height: 1.17;
+    color: #757575;
+    letter-spacing: 0.01em;
+}
+
+.form__field {
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form__label {
+    font-size: 12px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.form__icon {
+    position: absolute;
+    top: 29px;
+    left: 12px;
+    width: 18px;
+    height: 18px;
+    transition-property: fill;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    .form__input:focus+& {
+        fill: #2196f3;
+    }
+}
+
+.form__input {
+    outline: none;
+    padding-left: 42px;
+    height: 40px;
+    border: 1px solid rgba(33, 33, 33, 0.2);
+    box-sizing: border-box;
+    border-radius: 4px;
+    transition-property: border-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:focus {
+        border-color: #2196f3;
+    }
+}
+
+.form__field-comments {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form__comments {
+    .form__label+& {
+        display: block;
+        resize: none;
+        height: 120px;
+        padding: 12px 16px;
+        border: 1px solid rgba(33, 33, 33, 0.2);
+        box-sizing: border-box;
+        border-radius: 4px;
+        font-size: 14px;
+        line-height: 1.14;
+        letter-spacing: 0.01em;
+        color: rgba(117, 117, 117, 0.5);
+        transition-property: border;
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &:focus {
+        border: 1px solid #2196f3;
+        outline: none;
+    }
+
+    .form__label+&:not(:placeholder-shown) {
+        color: #000000;
+    }
+}
+
+.form__label {
+    position: relative;
+    margin-bottom: 4px;
+    display: flex;
+}
+
+.checkbox__form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.checkbox__label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.checkbox__icon {
+    border: 2px solid black;
+    border-radius: 2px;
+    width: 16px;
+    height: 15px;
+    margin-right: 7px;
+    fill: transparent;
+    display: inline-block;
+    background-size: contain;
+    background-origin: border-box;
+    transition-property: fill, background, border;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    .checkbox__input:checked~& {
+        border-radius: 2px;
+        background: #2196f3;
+        fill: #ffffff;
+        border: 2px solid #2196f3;
+    }
+}
+
+.checkbox__text {
+    display: inline;
+    margin-right: 4px;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.03em;
+
+    @media screen and (min-width: 1200px) {
+        font-size: 14px;
+        line-height: 1.71;
+    }
+}
+
+.checkbox__link {
+    position: relative;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.03em;
+    color: #2196f3;
+
+    @media screen and (min-width: 1200px) {
+        font-size: 14px;
+        line-height: 1.71;
+    }
+
+    @media screen and (max-width: 449.8px) {
+        text-decoration-line: underline;
+    }
+
+    @media screen and (min-width: 450px) {
+        &::after {
+            position: absolute;
+            bottom: 2px;
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: #2196f3;
+        }
+
+        @media screen and (min-width: 1200px) {
+            bottom: 5px;
+        }
+    }
+}
+
+.modal__button-form {
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.87;
+    letter-spacing: 0.06em;
+    background: #2196f3;
+    color: #ffffff;
+    min-width: 200px;
+    min-height: 50px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    border: transparent;
+    padding: 0;
+    transition-property: background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:focus,
+    &:hover {
+        background-color: #188ce8;
+    }
+}
